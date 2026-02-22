@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Superstore - Sales Prediction Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #333;
+            border-bottom: 4px solid #667eea;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            font-size: 32px;
+        }
+        
+        h2 {
+            color: #667eea;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 24px;
+            border-left: 4px solid #667eea;
+            padding-left: 15px;
+        }
+        
+        h3 {
+            color: #555;
+            margin-top: 20px;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .metric-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+            transition: transform 0.3s;
+        }
+        
+        .metric-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .metric-value {
+            font-size: 28px;
+            font-weight: bold;
+            margin: 10px 0;
+            word-break: break-word;
+        }
+        
+        .metric-label {
+            font-size: 13px;
+            opacity: 0.95;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .dashboard-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .dashboard-link {
+            display: block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.3s;
+            font-weight: 600;
+            box-shadow: 0 3px 10px rgba(102, 126, 234, 0.2);
+        }
+        
+        .dashboard-link:hover {
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .model-stats {
+            background: #f8f9fa;
+            padding: 25px;
+            border-left: 5px solid #667eea;
+            border-radius: 8px;
+            margin: 25px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+        }
+        
+        th {
+            background: #667eea;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        tr:hover {
+            background: #f5f5f5;
+        }
+        
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        ul {
+            margin-left: 30px;
+            margin-top: 20px;
+        }
+        
+        li {
+            margin: 15px 0;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        strong {
+            color: #667eea;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px solid #e0e0e0;
+            color: #999;
+            font-size: 14px;
+        }
+        
+        .section-description {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>GLOBAL SUPERSTORE - SALES PREDICTION DASHBOARD</h1>
+        
+        <h2>KEY PERFORMANCE INDICATORS</h2>
+        <div class="metrics">
+            <div class="metric-card">
+                <div class="metric-label">Total Sales</div>
+                <div class="metric-value">$12,642,502</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Total Profit</div>
+                <div class="metric-value">$1,467,457</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Profit Margin</div>
+                <div class="metric-value">11.61%</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Average Order Value</div>
+                <div class="metric-value">$246.49</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Total Orders</div>
+                <div class="metric-value">25,728</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Data Period</div>
+                <div class="metric-value">2012-2015</div>
+            </div>
+        </div>
+
+        <h2>INTERACTIVE VISUALIZATIONS</h2>
+        <p class="section-description">Click on any dashboard below to view detailed interactive charts and analytics:</p>
+        <div class="dashboard-links">
+            <a href="1_sales_trend.html" class="dashboard-link" target="_blank">Sales Trend</a>
+            <a href="2_sales_by_category.html" class="dashboard-link" target="_blank">Sales by Category</a>
+            <a href="3_sales_by_region.html" class="dashboard-link" target="_blank">Sales by Region</a>
+            <a href="4_segment_analysis.html" class="dashboard-link" target="_blank">Segment Analysis</a>
+            <a href="5_feature_importance.html" class="dashboard-link" target="_blank">Feature Importance</a>
+            <a href="6_actual_vs_predicted.html" class="dashboard-link" target="_blank">Model Performance</a>
+            <a href="7_profit_margin.html" class="dashboard-link" target="_blank">Profit Margin</a>
+            <a href="8_profit_trend.html" class="dashboard-link" target="_blank">Profit Trend</a>
+        </div>
+
+        <h2>MACHINE LEARNING MODEL - SALES PREDICTION</h2>
+        <p class="section-description">A Random Forest machine learning model was trained to predict sales based on various features:</p>
+        
+        <div class="model-stats">
+            <h3>Model Performance Metrics</h3>
+            <table>
+                <tr>
+                    <th>Metric</th>
+                    <th>Value</th>
+                    <th>Interpretation</th>
+                </tr>
+                <tr>
+                    <td>R² Score</td>
+                    <td><strong>0.6422</strong></td>
+                    <td>Model explains 64.22% of sales variance</td>
+                </tr>
+                <tr>
+                    <td>RMSE (Root Mean Squared Error)</td>
+                    <td><strong>$330.70</strong></td>
+                    <td>Average prediction error</td>
+                </tr>
+                <tr>
+                    <td>MAE (Mean Absolute Error)</td>
+                    <td><strong>$84.89</strong></td>
+                    <td>Average absolute prediction error</td>
+                </tr>
+                <tr>
+                    <td>Test Set Size</td>
+                    <td><strong>10,258</strong></td>
+                    <td>Samples used for validation (20% of data)</td>
+                </tr>
+            </table>
+
+            <h3>Top Features Influencing Sales Prediction</h3>
+            <table>
+                <tr>
+                    <th>Rank</th>
+                    <th>Feature</th>
+                    <th>Importance Score</th>
+                    <th>Impact</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Shipping Cost</td>
+                    <td><strong>0.7398</strong></td>
+                    <td>73.98% - Dominant factor</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Order Priority</td>
+                    <td><strong>0.0794</strong></td>
+                    <td>7.94%</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Days to Ship</td>
+                    <td><strong>0.0278</strong></td>
+                    <td>2.78%</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Ship Mode</td>
+                    <td><strong>0.0276</strong></td>
+                    <td>2.76%</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Quantity</td>
+                    <td><strong>0.0269</strong></td>
+                    <td>2.69%</td>
+                </tr>
+            </table>
+        </div>
+
+        <h2>DATA SUMMARY</h2>
+        <table>
+            <tr>
+                <th>Metric</th>
+                <th>Value</th>
+            </tr>
+            <tr>
+                <td>Total Records</td>
+                <td><strong>51,290</strong></td>
+            </tr>
+            <tr>
+                <td>Date Range</td>
+                <td><strong>2012-01-01 to 2015-12-31</strong></td>
+            </tr>
+            <tr>
+                <td>Number of Countries</td>
+                <td><strong>13</strong></td>
+            </tr>
+            <tr>
+                <td>Number of Regions</td>
+                <td><strong>4</strong></td>
+            </tr>
+            <tr>
+                <td>Product Categories</td>
+                <td><strong>3</strong></td>
+            </tr>
+            <tr>
+                <td>Customer Segments</td>
+                <td><strong>3</strong></td>
+            </tr>
+        </table>
+
+        <h2>KEY INSIGHTS & FINDINGS</h2>
+        <ul>
+            <li><strong>Top Sales Category:</strong> Technology with $4.65M in sales (highest revenue generator)</li>
+            <li><strong>Best Performing Region:</strong> EMEA (Europe, Middle East, Africa) with $418K in profit</li>
+            <li><strong>Most Profitable Segment:</strong> Corporate segment leads in overall profitability</li>
+            <li><strong>Average Order Value:</strong> $246.49 - consistent average transaction size</li>
+            <li><strong>Model Accuracy:</strong> The Random Forest model achieves 64.22% R² score in predicting sales based on key features</li>
+            <li><strong>Critical Factor:</strong> Shipping Cost is the most influential factor (73.98% importance) in sales predictions</li>
+            <li><strong>Profit Margin:</strong> Overall profit margin of 11.61% indicates healthy business performance</li>
+        </ul>
+
+        <footer>
+            <p>Global Superstore Sales Prediction Dashboard</p>
+            <p>Generated using Python, Pandas, Scikit-learn, and Plotly</p>
+            <p>Date: February 22, 2026</p>
+        </footer>
+    </div>
+</body>
+</html>
