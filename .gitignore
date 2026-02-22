@@ -5,3 +5,29 @@ __pycache__/
 .venv/
 venv/
 .env
+
+# Python packaging and tooling
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+dist/
+build/
+
+# Streamlit local settings
+.streamlit/secrets.toml
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# Logs
+*.log
